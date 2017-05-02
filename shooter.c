@@ -17,10 +17,13 @@ int main()
   IplImage *edges_threshed;
   IplImage *frame; 
   CvPoint centre;
-  CvScalar color;
-  color.val[1] = 0;
-  color.val[2] = 255;
-  color.val[3] = 0;
+  CvScalar color1, color2;
+  color1.val[0] = 170;
+  color1.val[1] = 150;
+  color1.val[2] = 150;
+  color2.val[0] = 180;
+  color2.val[1] = 255;
+  color2.val[2] = 255;
   cap=cvCreateCameraCapture(0);
   if(!cap)
     {
@@ -29,6 +32,7 @@ int main()
   else
     {
       cvNamedWindow("Window", CV_WINDOW_AUTOSIZE);
+      cvNamedWindow("Edges", CV_WINDOW_AUTOSIZE);
       while(1)
 	{
 	  frame = cvQueryFrame(cap);
@@ -40,7 +44,7 @@ int main()
 	  edges_HSV = cvCreateImage(cvGetSize(frame), 8, 3);
 	  cvCvtColor(frame, edges_HSV, CV_BGR2HSV);
 	  edges_threshed = cvCreateImage(cvGetSize(frame), 8, 1);
-	  cvInRangeS(edges_HSV, cvScalar(20,100,100), cvScalar(30,255,255),edges_threshed);
+	  cvInRangeS(edges_HSV, color1, color2,edges_threshed);
 	  cvReleaseImage(&edges_HSV);
 	  /*cvCvtColor(frame, edges, CV_RGB2GRAY);
 	    cvThreshold(edges, edges, 80, 255,0);
@@ -62,11 +66,14 @@ int main()
 	  centre = cvPoint(sumx/cpt, sumy/cpt);
 	  cvCircle(frame, centre, 30, color, -1, 8, 0);*/
 	  cvShowImage("Window",frame);
+	  cvShowImage("Edges",edges_threshed);
+	  cvReleaseImage(&edges_threshed);
 	  cvWaitKey(27);
 	}
       
       cvReleaseCapture(&cap);
       cvDestroyWindow("Window");
+      cvDestroyWindow("Edges");
     }
   return 0;
 }
