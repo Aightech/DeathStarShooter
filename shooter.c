@@ -14,7 +14,7 @@ int main()
   int i, cpt, sumx, sumy, cols, rows, h_resized, w_resized, moy;
   char *edgesData;
   CvCapture *cap;
-  IplImage *edges_HSV, *edges_threshed, *frame, *DeathStar, *mask, *DeathStar_resized;
+  IplImage *edges_HSV, *edges_threshed, *frame, *DeathStar, *mask, *DeathStar_resized, *Cockpit, *mask2;
   IplConvKernel *elem;
   CvPoint centre;
   CvScalar color1, color2, colorm1,colorm2;
@@ -44,16 +44,36 @@ int main()
   cap=cvCreateCameraCapture(0);
   if(!cap)
     {
-      printf("Erreur lors de l'ouverture de la caméra");
+      printf("Erreur lors de l'ouverture de la caméra\n");
     }
   else
     {
       cvNamedWindow("Window", CV_WINDOW_AUTOSIZE);
       cvNamedWindow("Edges", CV_WINDOW_AUTOSIZE);
+      cvNamedWindow("Cockpit", CV_WINDOW_AUTOSIZE);
       DeathStar = cvLoadImage("death-star-v.jpg", CV_LOAD_IMAGE_COLOR );/*On charge l'image de l'étoile de la mort*/
       if(!DeathStar)
 	{
 	  printf("Erreur lors de l'ouverture de l'étoile de la mort !! Mais que fait Anakin ??\n");
+	}
+      printf("Quel cockpit voulez vous utiliser ?\n-Le cockpit 1 ? (plutôt stylé)\n-Le cockpit 2 ? (en mode cabriolet)\n-Le cockpit 3 ? (avec aide à la visée pour les noobs)\n...\n...\n...\nAlors... quel cockpit ?\n");
+      scanf("%d",&i);
+      printf("Cockpit choisi = %d\n\n\n\n", i);
+      switch(i)
+	{
+	case 1:
+	  Cockpit = cvLoadImage("cockpit1bis.jpg", CV_LOAD_IMAGE_COLOR);
+	  break;
+	case 2:
+	  Cockpit = cvLoadImage("cockpit2.jpg", CV_LOAD_IMAGE_COLOR);
+	  break;
+	case 3:
+	  Cockpit = cvLoadImage("cockpit3.jpg", CV_LOAD_IMAGE_COLOR);
+	  break;
+	}
+      if(!Cockpit)
+	{
+	  printf("Erreur lors de l'ouverture du cockpit !! Putain de mécano rebelle !\n");
 	}
       while(1)
 	{
@@ -80,6 +100,8 @@ int main()
 	  /*EROSION*/
 	  elem = cvCreateStructuringElementEx(5, 5, 2, 2.5, 2.5, NULL );
 	  cvErode(edges_threshed, edges_threshed, elem, 1);
+
+	  /*Calcul du centre de l'image et du nombre moyen de pixels détectés*/
 	  cpt = 1;
 	  sumx= 0;
 	  sumy= 0;
@@ -96,11 +118,9 @@ int main()
 		}
 	    }
 	  moy += (cpt-moy)* coeff;  
+
 	  /*Image ROI*/
-	  printf("cpt = %d\n",cpt);
 	  percentage = (int)( ((float)moy/(640.0*480.0))*1200.0 + 5.0);
-	  printf("pourcentage = %d \n",percentage);
-	  printf("différence =%d \n", moy);
 	  h_resized = (int)( (DeathStar->height*percentage)/100 );
 	  w_resized = (int)( (DeathStar->width*percentage)/100 );
 	  DeathStar_resized = resize(DeathStar, percentage);
@@ -110,15 +130,31 @@ int main()
 	  cvInRangeS(DeathStar_resized, colorm1, colorm2, mask);
 	  cvNot(mask,mask);
 
+	  /*Création du mask permettant d'enlever le fond du cockpit*/
+	  mask2 = cvCreateImage(cvSize(638, 479), Cockpit->depth, 1);
+	  cvInRangeS(Cockpit, colorm1, colorm2, mask2);
+	  cvNot(mask2,mask2);
+
+
 	  ROI = cvRect((sumx/cpt) - (int)(w_resized/2), (sumy/cpt) - (int)(h_resized/2), w_resized, h_resized);
 	  centre = cvPoint(sumx/cpt, sumy/cpt);                     /*Centre du patatoïde*/
 	  cvSetImageROI(frame, ROI);                                /*on set le ROI de l'image frame*/
-	  /*cvCircle(frame, centre, 15, color, -1, 8, 0);*/
 	  if(frame->roi->height == h_resized && frame->roi->width == w_resized)
 	    cvCopy(DeathStar_resized, frame, mask);                           /*on copie l'étoile de la mort sur l'image (dans la ROI)*/
 	  cvResetImageROI(frame);
+
+
+	  /* Copie du cockpit sur l'image principale
+	  ROI = cvRect(0,0,638,479);
+	  cvSetImageROI(frame,ROI);
+	  if(Cockpit->height == frame->roi->height && Cockpit->width == frame->roi->width)
+	    cvCopy(Cockpit, frame, mask);
+	  else
+	    printf("Erreur pas la même taille fdp wtf\n");
+	    cvResetImageROI(frame);*/
 	  cvShowImage("Window",frame);
 	  cvShowImage("Edges",edges_threshed);
+	  cvShowImage("Cockpit",Cockpit);
 	  cvReleaseImage(&edges_HSV);
 	  cvReleaseImage(&edges_threshed);
 	  cvReleaseImage(&mask);
@@ -127,6 +163,7 @@ int main()
       
       cvReleaseCapture(&cap);
       cvReleaseImage(&DeathStar);
+      cvReleaseImage(&Cockpit);
       cvDestroyWindow("Window");
       cvDestroyWindow("Edges");
     }
