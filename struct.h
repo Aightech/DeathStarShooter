@@ -1,4 +1,10 @@
-/* Ce fichier regroupe les structures nécéssaires à notre jeu */
+/**
+ * \file struct.h
+ * \brief Ce fichier regroupe les structures nécessaires à notre jeu.
+ * \author Elias H.
+ * \version 1.0
+ * \date 30 mai 2017
+ */
 #ifndef STRUCT
 #define STRUCT
 
@@ -22,35 +28,46 @@ typedef struct _Pantilt{
 	
 	
 } Pantilt;
-
+/**
+ * \struct Camera
+ * \brief Structure contenant les variables liées à la caméra et au traitement des images reçues
+ *
+ */
 typedef struct _Camera{
 
-	IplImage *HSV;
-	IplImage *threshed;
-	IplImage *frame;
-	CvScalar lowerBound, higherBound;
-	CvCapture *cap;
-	IplConvKernel *elem;
-	int cols, rows;
+	IplImage *HSV;/*!< Image reçue passée dans l'espace HSV. */
+	IplImage *threshed;/*!< Image reçue binarisée depuis l'espace HSV. */
+	IplImage *frame;/*!< Image reçue. */
+	CvScalar lowerBound, higherBound;/*!< Bornes de binarisation de l'image HSV. */
+	CvCapture *cap;/*!< La caméra d'où on récupère nos images. */
+	IplConvKernel *elem;/*!< Element pour l'érosion. */
+	int cols, rows;/*!< Nombres de colonnes et de lignes de l'image. */
 
 } Camera;
-
+/**
+ * \struct CGI
+ * \brief Structure contenant les images et effets à incorporer à l'image reçue.
+ *
+ */
 typedef struct _CGI{
 	
-	IplImage *DeathStar; 
-	IplImage *mask_DeathStar;
-	IplImage *DeathStar_resized;
-	IplImage *Cockpit;
-	IplImage *mask_Cockpit;
-	CvScalar maskLowerBound, maskHigherBound;
+	IplImage *DeathStar; /*!< Image de l'étoile de la mort à sa taille initiale. */
+	IplImage *mask_DeathStar;/*!< Mask à appliquer à l'étoile de la mort pour avoir une image sans fond. */
+	IplImage *DeathStar_resized;/*!< Image de l'étoile de la mort redimensionnée. */
+	IplImage *Cockpit;/*!< Image du cockpit choisi. */
+	IplImage *mask_Cockpit;/*!< Mask à appliquer au cockpit pour avoir une image sans fond. */
+	CvScalar maskLowerBound, maskHigherBound;/*!< Bornes permettant l'application du mask. */
 
 } CGI;
-
+/**
+ * \struct Patatoide
+ * \brief Contient les informations relatives au patatoïde détecté
+ */
 typedef struct _Patatoide{
 
-	CvPoint centre;
-	int moy;
-	int percentage;
+	CvPoint centre;/*!< Centre du patatoïde. */
+	int moy;/*!< "taille" du patatoïde en nombre de pixels, avec une évolution pondérée par un coefficient. */
+	int percentage;/*!< Taille du patatoide en pourcentage par rapport à l'image initiale. */
 
 } Patatoide;
 
