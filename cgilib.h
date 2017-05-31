@@ -103,4 +103,12 @@ int init_cam(Camera *cam);
  * \return void.
  */
 void insert_image(struct _CGI *afterEffect, Camera *cam, Patatoide *patate, int mode);
+/**
+ * \fn int isTouched(Patatoide patate) 
+ * \brief Fonction qui détermine si l'on a touché l'étoile ou non lors de notre tir
+ *
+ * \param patate Structure contenant les informations sur le patatoide.
+ * \return int 1 si l'on a touché, 0 sinon.
+ */
+int isTouched(Patatoide patate) 
 #endif
