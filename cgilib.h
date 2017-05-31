@@ -54,7 +54,7 @@ IplImage *resize(IplImage *src, int percentage);
  *
  * \return IplImage pointeur sur l'image du cockpit.
  */
-IplImage *init_cockpit();
+IplImage *init_cockpit(int i);
 /**
  * \fn void calcul_patate(Patatoide *patate, Camera *cam, float coeff)
  * \brief Fonction effectuant des calculs amenant à connaître le centre et la taille du patatoïde observé.

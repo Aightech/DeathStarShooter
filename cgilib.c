@@ -46,13 +46,13 @@ IplImage *resize(IplImage *src, int percentage)
   cvResize(src, dst, CV_INTER_AREA);
   return dst;
 }
-IplImage *init_cockpit()
+IplImage *init_cockpit(int i)
 {
-  int i;
+  
   IplImage *Cockpit;
-  printf("Quel cockpit voulez vous utiliser ?\n-Le cockpit 1 ? (plutôt stylé)\n-Le cockpit 2 ? (en mode cabriolet)\n-Le cockpit 3 ? (avec aide à la visée pour les noobs)\n...\n...\n...\nAlors... quel cockpit ?\n");
-  scanf("%d",&i);
-  printf("Cockpit choisi = %d\n\n\n\n", i);
+  //printf("Quel cockpit voulez vous utiliser ?\n-Le cockpit 1 ? (plutôt stylé)\n-Le cockpit 2 ? (en mode cabriolet)\n-Le cockpit 3 ? (avec aide à la visée pour les noobs)\n...\n...\n...\nAlors... quel cockpit ?\n");
+  //scanf("%d",&i);
+  //printf("Cockpit choisi = %d\n\n\n\n", i);
   switch(i)
     {
     case 1:
