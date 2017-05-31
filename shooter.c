@@ -153,7 +153,6 @@ int main()
 		calcul_patate(&patate, &cam, 0.1);
 
 		insert_image(&afterEffect, &cam, &patate, 1);/* On insère l'étoile de la mort */
-		insert_image(&afterEffect, &cam, &patate, 2);/* On insère l'explosion */
 
 		if(js.buttonPressed(0)>0)    
 		  flag = 1;
@@ -166,6 +165,10 @@ int main()
 		      {
 			cam.frameNumber = 0;	
 			flag = 0;
+			if(isTouched(patate))
+			{
+						insert_image(&afterEffect, &cam, &patate, 2);/* On insère l'explosion */
+					usleep(500000);
 		      }
 		  }
 
