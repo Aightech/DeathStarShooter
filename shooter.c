@@ -5,10 +5,10 @@
 
 int main()
 {
-	//cJoystick js; joystick_position jp[2];
+	/*/cJoystick js; joystick_position jp[2];
 
-	Pantilt pantilt = {80,80,40,140,40,100,0.3};
-	initPantilt();
+	//Pantilt pantilt = {80,80,40,140,40,100,0.3};
+	//initPantilt();*/
 
   Camera cam;
   struct _CGI afterEffect;
