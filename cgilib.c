@@ -105,18 +105,24 @@ void create_mask(CGI *afterEffect, int mode, int w_resized, int h_resized)
       cvInRangeS(afterEffect->Cockpit, afterEffect->maskLowerBound, afterEffect->maskHigherBound, afterEffect->mask_Cockpit);
       cvNot(afterEffect->mask_Cockpit, afterEffect->mask_Cockpit);
     }
-  if(mode)
+  if(mode == 1)
     {
       afterEffect->mask_DeathStar = cvCreateImage(cvSize(w_resized,h_resized), afterEffect->DeathStar->depth, 1);
-      cvInRangeS(afterEffect->DeathStar_resized, afterEffect->maskLowerBound, afterEffect->maskHigherBound, afterEffect->mask_DeathStar);/* a commenter */
+      cvInRangeS(afterEffect->DeathStar_resized, afterEffect->maskLowerBound, afterEffect->maskHigherBound, afterEffect->mask_DeathStar);
       cvNot(afterEffect->mask_DeathStar,afterEffect->mask_DeathStar);
+    }
+  if(mode == 2)
+    {
+      afterEffect->mask_Explosion = cvCreateImage(cvSize(w_resized,h_resized), afterEffect->Explosion->depth, 1);
+      cvInRangeS(afterEffect->Explosion_resized, afterEffect->maskLowerBound, afterEffect->maskHigherBound, afterEffect->mask_Explosion);
+      cvNot(afterEffect->mask_Explosion,afterEffect->mask_Explosion);
     }
 }
 int init_cam(Camera *cam)
 {
   cam->lowerBound = cvScalar(109,141,84, 0);
   cam->higherBound = cvScalar(121, 216, 255, 0);
-  cam->cap = cvCreateCameraCapture(0);
+  cam->cap = cvCreateCameraCapture(1);
   if(!cam->cap)
     {
       return 0;
@@ -124,4 +130,61 @@ int init_cam(Camera *cam)
   cam->elem = cvCreateStructuringElementEx(5, 5, 2, 2.5, 2.5, NULL );
   cvNamedWindow("Window", CV_WINDOW_AUTOSIZE);
   return 1;
+}
+void insert_image(struct _CGI *afterEffect, Camera *cam, Patatoide *patate, int mode)
+{
+  int h_resized, w_resized;
+  CvRect ROI;
+  switch(mode)
+    {
+
+    case 0:
+      /* Copie du cockpit sur l'image principale*/
+      ROI = cvRect(0,0,afterEffect->Cockpit->width,afterEffect->Cockpit->height);
+      cvSetImageROI(cam->frame,ROI);
+      if(afterEffect->Cockpit->height == cam->frame->roi->height && afterEffect->Cockpit->width == cam->frame->roi->width)
+	cvCopy(afterEffect->Cockpit, cam->frame, afterEffect->mask_Cockpit);
+      break;
+
+    case 1:
+      /*Image ROI Pour l'étoile de la mort*/
+      h_resized = (int)( (afterEffect->DeathStar->height*patate->percentage)/100 );
+      w_resized = (int)( (afterEffect->DeathStar->width*patate->percentage)/100 );
+
+      afterEffect->DeathStar_resized = resize(afterEffect->DeathStar, patate->percentage);
+
+      /*Création du mask permettant d'enlever le fond de l'étoile de la mort*/
+
+      create_mask(afterEffect, 1, w_resized, h_resized);
+
+      /* ROI pour l'étoile de la mort */
+      ROI = cvRect(patate->centre.x - (int)(w_resized/2), patate->centre.y - (int)(h_resized/2), w_resized, h_resized);
+      cvSetImageROI(cam->frame, ROI);                                /*on set le ROI de l'image frame*/
+      if(cam->frame->roi->height == h_resized && cam->frame->roi->width == w_resized)
+	cvCopy(afterEffect->DeathStar_resized, cam->frame, afterEffect->mask_DeathStar);/*on copie l'étoile de la mort sur l'image (dans la ROI)*/
+
+      cvResetImageROI(cam->frame);
+      break;
+
+    case 2:
+
+      h_resized = (int)( (afterEffect->Explosion->height*patate->percentage)/100 );
+      w_resized = (int)( (afterEffect->Explosion->width*patate->percentage)/100 );
+
+      afterEffect->Explosion_resized = resize(afterEffect->Explosion, patate->percentage);
+
+      /*Création du mask permettant d'enlever le fond de l'explosion*/
+	  
+      create_mask(afterEffect, 2, w_resized, h_resized);
+
+      /*Copie de l'explosion sur l'image (uniquement si évènement*/
+
+      ROI = cvRect(patate->centre.x - (int)(w_resized/2), patate->centre.y - (int)(h_resized/2), w_resized, h_resized);
+      cvSetImageROI(cam->frame, ROI);                                /*on set le ROI de l'image frame*/
+      if(cam->frame->roi->height == h_resized && cam->frame->roi->width == w_resized)
+	cvCopy(afterEffect->Explosion_resized, cam->frame, afterEffect->mask_Explosion);/*on copie l'étoile de la mort sur l'image (dans la ROI)*/
+
+      cvResetImageROI(cam->frame);
+      break;
+    }
 }

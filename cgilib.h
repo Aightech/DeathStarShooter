@@ -90,5 +90,15 @@ void create_mask(struct _CGI *afterEffect, int mode, int w_resized, int h_resize
  * \return void.
  */
 int init_cam(Camera *cam);
-
+/**
+ * \fn void insert_image(struct _CGI *afterEffect, Camera *cam, Patatoide *patate, int mode)
+ * \brief Fonction d'insertion d'image plus petite dans l'image affichée
+ *
+ * \param afterEffect Structure contenant les variables et images à insérer ainsi que les mask de copie.
+ * \param cam Structure contenant les variables et images à modifier.
+ * \param patate Structure contenant les informations sur le patatoide.
+ * \param mode permet de choisir quelle image copier.
+ * \return void.
+ */
+void insert_image(struct _CGI *afterEffect, Camera *cam, Patatoide *patate, int mode);
 #endif
