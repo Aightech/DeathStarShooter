@@ -8,8 +8,34 @@
 #ifndef STRUCT
 #define STRUCT
 
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 #include <opencv/highgui.h>
 #include <opencv/cv.h>
+
+
+#define W 640
+#define H 720
+using namespace sf;
+using namespace std;
+
+/**
+ * \struct _GUI
+ * \brief Gui est une structure composé de toutes les variable nécéssaire à linterface graphique.
+ */
+typedef struct _GUI{
+       RenderWindow window;/**< The window */
+       Texture textureButton,textureStarShip,textureImages;/**<  texture of the differents gui objects*/
+       Sprite buttons[3];/**< The buttons of the GUI */
+       Font font;/**<  The font used in the gui */
+       Text labels[3],labTitle;/**<  The */
+       float selected;/**<  */
+       int display;/**<  */
+       int starship;/**<  */
+       unsigned char pixels[W*H*4];/**<  */
+       
+
+}GUI;
 
 /**
  * \struct _Pantilt
@@ -57,6 +83,7 @@ typedef struct _CGI{
 	IplImage *Cockpit;/*!< Image du cockpit choisi. */
 	IplImage *mask_Cockpit;/*!< Mask à appliquer au cockpit pour avoir une image sans fond. */
 	CvScalar maskLowerBound, maskHigherBound;/*!< Bornes permettant l'application du mask. */
+	int i;
 
 } CGI;
 /**
@@ -70,5 +97,7 @@ typedef struct _Patatoide{
 	int percentage;/*!< Taille du patatoide en pourcentage par rapport à l'image initiale. */
 
 } Patatoide;
+
+
 
 #endif
