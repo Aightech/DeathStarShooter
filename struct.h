@@ -43,14 +43,14 @@ typedef struct _GUI{
  */
 typedef struct _Pantilt{
 	
-	float posM1,posM2; /**< Current positions of the motors. */
-       int minM1,maxM1; /**< Maximums positions of the motor 1. */
-       int minM2,maxM2; /**< Maximums positions of the motor 1. */
-       float ease; /**< Coeficient to filter the position command of the motors. */
+  float posM1,posM2; /**< Current positions of the motors. */
+  int minM1,maxM1; /**< Maximums positions of the motor 1. */
+  int minM2,maxM2; /**< Maximums positions of the motor 1. */
+  float ease; /**< Coeficient to filter the position command of the motors. */
        
-       int archPro; /**< File descriptor of the embed microcontroller */
-       char buffer[64];
-       char str[8];
+  int archPro; /**< File descriptor of the embed microcontroller */
+  char buffer[64];
+  char str[8];
 	
 	
 } Pantilt;
@@ -61,13 +61,14 @@ typedef struct _Pantilt{
  */
 typedef struct _Camera{
 
-	IplImage *HSV;/*!< Image reçue passée dans l'espace HSV. */
-	IplImage *threshed;/*!< Image reçue binarisée depuis l'espace HSV. */
-	IplImage *frame;/*!< Image reçue. */
-	CvScalar lowerBound, higherBound;/*!< Bornes de binarisation de l'image HSV. */
-	CvCapture *cap;/*!< La caméra d'où on récupère nos images. */
-	IplConvKernel *elem;/*!< Element pour l'érosion. */
-	int cols, rows;/*!< Nombres de colonnes et de lignes de l'image. */
+  IplImage *HSV;/*!< Image reçue passée dans l'espace HSV. */
+  IplImage *threshed;/*!< Image reçue binarisée depuis l'espace HSV. */
+  IplImage *frame;/*!< Image reçue. */
+  CvScalar lowerBound, higherBound;/*!< Bornes de binarisation de l'image HSV. */
+  CvCapture *cap;/*!< La caméra d'où on récupère nos images. */
+  IplConvKernel *elem;/*!< Element pour l'érosion. */
+  int cols, rows;/*!< Nombres de colonnes et de lignes de l'image. */
+  int frameNumber;/*!< Donne la frame actuelle pour le déplacement des lasers. */
 
 } Camera;
 /**
@@ -77,14 +78,16 @@ typedef struct _Camera{
  */
 typedef struct _CGI{
 	
-	IplImage *DeathStar; /*!< Image de l'étoile de la mort à sa taille initiale. */
-	IplImage *mask_DeathStar;/*!< Mask à appliquer à l'étoile de la mort pour avoir une image sans fond. */
-	IplImage *DeathStar_resized;/*!< Image de l'étoile de la mort redimensionnée. */
-	IplImage *Cockpit;/*!< Image du cockpit choisi. */
-	IplImage *mask_Cockpit;/*!< Mask à appliquer au cockpit pour avoir une image sans fond. */
-	CvScalar maskLowerBound, maskHigherBound;/*!< Bornes permettant l'application du mask. */
-	int i;
 
+  IplImage *DeathStar; /*!< Image de l'étoile de la mort à sa taille initiale. */
+  IplImage *mask_DeathStar;/*!< Mask à appliquer à l'étoile de la mort pour avoir une image sans fond. */
+  IplImage *DeathStar_resized;/*!< Image de l'étoile de la mort redimensionnée. */
+  IplImage *Cockpit;/*!< Image du cockpit choisi. */
+  IplImage *mask_Cockpit;/*!< Mask à appliquer au cockpit pour avoir une image sans fond. */
+  CvScalar maskLowerBound, maskHigherBound;/*!< Bornes permettant l'application du mask. */
+  IplImage *Explosion;/*!< Image contenant l'explosion à taille initiale. */
+  IplImage *Explosion_resized;/*!< Image contenant l'explosion redimensionnée. */
+  IplImage *mask_Explosion;/*!< Mask à appliquer à l'explosion pour avoir une image sans fond. */
 } CGI;
 /**
  * \struct Patatoide
@@ -92,9 +95,9 @@ typedef struct _CGI{
  */
 typedef struct _Patatoide{
 
-	CvPoint centre;/*!< Centre du patatoïde. */
-	int moy;/*!< "taille" du patatoïde en nombre de pixels, avec une évolution pondérée par un coefficient. */
-	int percentage;/*!< Taille du patatoide en pourcentage par rapport à l'image initiale. */
+  CvPoint centre;/*!< Centre du patatoïde. */
+  int moy;/*!< "taille" du patatoïde en nombre de pixels, avec une évolution pondérée par un coefficient. */
+  int percentage;/*!< Taille du patatoide en pourcentage par rapport à l'image initiale. */
 
 } Patatoide;
 
