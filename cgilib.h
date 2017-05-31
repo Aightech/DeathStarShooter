@@ -10,6 +10,8 @@
 
 #include "struct.h"
 
+
+
 /**
  * \fn void laser(IplImage *img, int frameNumber)
  * \brief Fonction d'animation des lasers sur l'image.

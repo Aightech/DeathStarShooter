@@ -1,14 +1,28 @@
 #include <stdio.h>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include "guilib.h"
 #include "cgilib.h"
+#include "joystick.h"
 #include "mbdlib.h"
+#include <iostream>
+#include "joystick.h"
+
+
+
+
+
 
 
 int main()
 {
-	/*/cJoystick js; joystick_position jp[2];
-
+	cJoystick js;
+       
+       GUI gui;
+       initGUI(&gui);
+       createMenu(&gui);
 	//Pantilt pantilt = {80,80,40,140,40,100,0.3};
-	//initPantilt();*/
+	//initPantilt();
 
   Camera cam;
   struct _CGI afterEffect;

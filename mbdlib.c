@@ -1,9 +1,13 @@
-#include "mbdlib.c"
-#include "struct.h"
-#include <stdio.h>
 
-#include <iostream>
-#include <fcntl.h>
+#include <stdio.h>
+#include "mbdlib.h"
+#include "struct.h"
+#include "unistd.h"
+//#include <iostream>
+
+//#include <unistd.h>
+
+
 
 void initPantilt(Pantilt *pnt)
 {
