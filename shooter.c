@@ -22,7 +22,7 @@ int main()
   createMenu(&gui);
   //Pantilt pantilt = {80,80,40,140,40,100,0.3};
   //initPantilt();
-
+  int flag;
   Camera cam;
   struct _CGI afterEffect;
   Patatoide patate;
@@ -123,9 +123,7 @@ int main()
 		gui.window.draw(sprite);
 		gui.window.display();//updateGUI(&gui);
 
-		cam.frameNumber++;
-		if(cam.frameNumber == 10)
-		  cam.frameNumber = 0;
+
 		cam.frame = cvQueryFrame(cam.cap);
 		if(!cam.frame)
 		  {
@@ -156,9 +154,24 @@ int main()
 
 		insert_image(&afterEffect, &cam, &patate, 1);/* On insère l'étoile de la mort */
 		insert_image(&afterEffect, &cam, &patate, 2);/* On insère l'explosion */
+
+		if(js.buttonPressed(0)>0)    
+		  flag = 1;
+		
+		if(flag == 1)
+		  {
+		    laser(cam.frame, cam.frameNumber);
+		    cam.frameNumber++;
+		    if(cam.frameNumber == 10)
+		      {
+			cam.frameNumber = 0;	
+			flag = 0;
+		      }
+		  }
+
 		insert_image(&afterEffect, &cam, &patate, 0);/* On insère le cockpit */
 
-		laser(cam.frame, cam.frameNumber);
+		
 
 		release_boucle(&afterEffect, &cam);
 		if(cvWaitKey(27) != -1)
