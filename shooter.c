@@ -10,9 +10,6 @@
 
 
 
-
-
-
 int main()
 {
   cJoystick js;
@@ -165,11 +162,11 @@ int main()
 		      {
 			cam.frameNumber = 0;	
 			flag = 0;
-			if(isTouched(patate))
+			/*if(isTouched(patate))
 			{
-						insert_image(&afterEffect, &cam, &patate, 2);/* On insère l'explosion */
+						insert_image(&afterEffect, &cam, &patate, 2); On insère l'explosion 
 					usleep(500000);
-		      }
+		      }*/}
 		  }
 
 		insert_image(&afterEffect, &cam, &patate, 0);/* On insère le cockpit */
