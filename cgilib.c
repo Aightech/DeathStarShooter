@@ -191,7 +191,7 @@ void insert_image(struct _CGI *afterEffect, Camera *cam, Patatoide *patate, int 
 int isTouched(Patatoide patate) 
 {   
   int centre_x = 320;   
-  int centr_y = 212;   
+  int centre_y = 212;   
   int rayon_initial = 220;   
   int rayon_actuel = (int) (220.0 * (float)patate.percentage)/100.0;   
   if((centre_x - patate.centre.x)*(centre_x - patate.centre.x) + (centre_y - patate.centre.y)*(centre_y - patate.centre.y) <= rayon_actuel * rayon_actuel)     

@@ -110,5 +110,5 @@ void insert_image(struct _CGI *afterEffect, Camera *cam, Patatoide *patate, int 
  * \param patate Structure contenant les informations sur le patatoide.
  * \return int 1 si l'on a touché, 0 sinon.
  */
-int isTouched(Patatoide patate) 
+int isTouched(Patatoide patate);
 #endif
