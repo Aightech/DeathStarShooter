@@ -88,10 +88,10 @@ int main()
 		if(js.buttonPressed(0)>0)
 		  {
 		    gui.starship=(int)gui.selected%3;
-		    //afterEffect.Cockpit = init_cockpit(gui.starship);/* Initialisations liées à l'image du cockpit */
+		    afterEffect.Cockpit = init_cockpit(gui.starship);/* Initialisations liées à l'image du cockpit */
 		    //create_mask(&afterEffect, 0, 0, 0);
-		    //gui.display=2;
-		    //createMenu(&gui);
+		    gui.display=2;
+		    createMenu(&gui);
 		  }
 		updateGUI(&gui);
 	      }

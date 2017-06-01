@@ -1,0 +1,299 @@
+\hypertarget{cgilib_8h}{}\section{cgilib.\+h File Reference}
+\label{cgilib_8h}\index{cgilib.\+h@{cgilib.\+h}}
+
+
+Ce fichier contient les prototypes des fonctions du fichier \hyperlink{cgilib_8c}{cgilib.\+c}.  
+
+
+{\ttfamily \#include \char`\"{}struct.\+h\char`\"{}}\\*
+Include dependency graph for cgilib.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cgilib_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{cgilib_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{cgilib_8h_a59601d55e89384d9c991d0a306f28f04}{laser} (Ipl\+Image $\ast$img, int frame\+Number)
+\begin{DoxyCompactList}\small\item\em Fonction d\textquotesingle{}animation des lasers sur l\textquotesingle{}image. \end{DoxyCompactList}\item 
+void \hyperlink{cgilib_8h_ae3d713a42a97f1b819a5b94c5bea91ae}{release\+\_\+final} (\hyperlink{struct_camera}{Camera} $\ast$cam, struct \hyperlink{struct___c_g_i}{\+\_\+\+C\+GI} $\ast$after\+Effect)
+\begin{DoxyCompactList}\small\item\em Fonction de libération de la mémoire que l\textquotesingle{}on a allouée au début du programme (et pas dans la boucle infinie) \end{DoxyCompactList}\item 
+void \hyperlink{cgilib_8h_a9c332fda0ae3ab452aafa58f42432a76}{release\+\_\+boucle} (struct \hyperlink{struct___c_g_i}{\+\_\+\+C\+GI} $\ast$after\+Effect, \hyperlink{struct_camera}{Camera} $\ast$cam)
+\begin{DoxyCompactList}\small\item\em Fonction de libération de la mémoire que l\textquotesingle{}on a allouée dans la boucle infinie du programme. \end{DoxyCompactList}\item 
+Ipl\+Image $\ast$ \hyperlink{cgilib_8h_affce441e08e063a310c74cf737ccae8c}{resize} (Ipl\+Image $\ast$src, int percentage)
+\begin{DoxyCompactList}\small\item\em Fonction qui redimensionne une image en pourcentage de sa taille initiale. \end{DoxyCompactList}\item 
+Ipl\+Image $\ast$ \hyperlink{cgilib_8h_a25a21584c96a36aba95f6d40245de59d}{init\+\_\+cockpit} (int i)
+\item 
+void \hyperlink{cgilib_8h_aef64f26cc8f7854b0cfcbf94efa105d1}{calcul\+\_\+patate} (\hyperlink{struct_patatoide}{Patatoide} $\ast$patate, \hyperlink{struct_camera}{Camera} $\ast$cam, float coeff)
+\begin{DoxyCompactList}\small\item\em Fonction effectuant des calculs amenant à connaître le centre et la taille du patatoïde observé. \end{DoxyCompactList}\item 
+void \hyperlink{cgilib_8h_a04d30fac7dc18ecc16cdd21f96aa16ed}{init\+\_\+mask} (struct \hyperlink{struct___c_g_i}{\+\_\+\+C\+GI} $\ast$after\+Effect)
+\begin{DoxyCompactList}\small\item\em Fonction initialisant les valeurs des bornes haute et basse utilisées dans la création du mask. \end{DoxyCompactList}\item 
+void \hyperlink{cgilib_8h_a47fe4ad353e7a066c4bcdc9572605c65}{create\+\_\+mask} (struct \hyperlink{struct___c_g_i}{\+\_\+\+C\+GI} $\ast$after\+Effect, int mode, int w\+\_\+resized, int h\+\_\+resized)
+\begin{DoxyCompactList}\small\item\em Fonction de création du mask. \end{DoxyCompactList}\item 
+int \hyperlink{cgilib_8h_a5423edb32e5bf81ad59c86966a7494c6}{init\+\_\+cam} (\hyperlink{struct_camera}{Camera} $\ast$cam)
+\begin{DoxyCompactList}\small\item\em Fonction d\textquotesingle{}initialisation des différents paramètres liées à la caméra. \end{DoxyCompactList}\item 
+void \hyperlink{cgilib_8h_a38a7d29cdb7a9f133a6845b22644e6ac}{insert\+\_\+image} (struct \hyperlink{struct___c_g_i}{\+\_\+\+C\+GI} $\ast$after\+Effect, \hyperlink{struct_camera}{Camera} $\ast$cam, \hyperlink{struct_patatoide}{Patatoide} $\ast$patate, int mode)
+\begin{DoxyCompactList}\small\item\em Fonction d\textquotesingle{}insertion d\textquotesingle{}image plus petite dans l\textquotesingle{}image affichée. \end{DoxyCompactList}\item 
+int \hyperlink{cgilib_8h_a731bf42d8f37ed38b2865dd7b06bb031}{is\+Touched} (\hyperlink{struct_patatoide}{Patatoide} patate)
+\begin{DoxyCompactList}\small\item\em Fonction qui détermine si l\textquotesingle{}on a touché l\textquotesingle{}étoile ou non lors de notre tir. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Ce fichier contient les prototypes des fonctions du fichier \hyperlink{cgilib_8c}{cgilib.\+c}. 
+
+\begin{DoxyAuthor}{Author}
+Elias H. 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+30 mai 2017 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\index{cgilib.\+h@{cgilib.\+h}!calcul\+\_\+patate@{calcul\+\_\+patate}}
+\index{calcul\+\_\+patate@{calcul\+\_\+patate}!cgilib.\+h@{cgilib.\+h}}
+\subsubsection[{\texorpdfstring{calcul\+\_\+patate(\+Patatoide $\ast$patate, Camera $\ast$cam, float coeff)}{calcul_patate(Patatoide *patate, Camera *cam, float coeff)}}]{\setlength{\rightskip}{0pt plus 5cm}void calcul\+\_\+patate (
+\begin{DoxyParamCaption}
+\item[{{\bf Patatoide} $\ast$}]{patate, }
+\item[{{\bf Camera} $\ast$}]{cam, }
+\item[{float}]{coeff}
+\end{DoxyParamCaption}
+)}\hypertarget{cgilib_8h_aef64f26cc8f7854b0cfcbf94efa105d1}{}\label{cgilib_8h_aef64f26cc8f7854b0cfcbf94efa105d1}
+
+
+Fonction effectuant des calculs amenant à connaître le centre et la taille du patatoïde observé. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em patate} & Structure contenant les informations sur le patatoïde. \\
+\hline
+{\em cam} & Structure contenant des pointeurs sur les images utilisées dans le programme. \\
+\hline
+{\em coeff} & Valeur choisie à 0.\+1 ajustant la variation de la taille du patatoïde pour empêcher une évolution trop brusque. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{cgilib.\+h@{cgilib.\+h}!create\+\_\+mask@{create\+\_\+mask}}
+\index{create\+\_\+mask@{create\+\_\+mask}!cgilib.\+h@{cgilib.\+h}}
+\subsubsection[{\texorpdfstring{create\+\_\+mask(struct \+\_\+\+C\+G\+I $\ast$after\+Effect, int mode, int w\+\_\+resized, int h\+\_\+resized)}{create_mask(struct _CGI *afterEffect, int mode, int w_resized, int h_resized)}}]{\setlength{\rightskip}{0pt plus 5cm}void create\+\_\+mask (
+\begin{DoxyParamCaption}
+\item[{struct {\bf \+\_\+\+C\+GI} $\ast$}]{after\+Effect, }
+\item[{int}]{mode, }
+\item[{int}]{w\+\_\+resized, }
+\item[{int}]{h\+\_\+resized}
+\end{DoxyParamCaption}
+)}\hypertarget{cgilib_8h_a47fe4ad353e7a066c4bcdc9572605c65}{}\label{cgilib_8h_a47fe4ad353e7a066c4bcdc9572605c65}
+
+
+Fonction de création du mask. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em after\+Effect} & Structure contenant le mask à créer. \\
+\hline
+{\em mode} & permet de choisir quel mask créer (mode = 0 pour le mask du cockpit et mode = 1 pour le mask de l\textquotesingle{}étoile de la mort). \\
+\hline
+{\em w\+\_\+resized} & Seulement pour le mode 1, largeur de l\textquotesingle{}image à masquer. \\
+\hline
+{\em h\+\_\+resized} & eulement pour le mode 1, hauteur de l\textquotesingle{}image à masquer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{cgilib.\+h@{cgilib.\+h}!init\+\_\+cam@{init\+\_\+cam}}
+\index{init\+\_\+cam@{init\+\_\+cam}!cgilib.\+h@{cgilib.\+h}}
+\subsubsection[{\texorpdfstring{init\+\_\+cam(\+Camera $\ast$cam)}{init_cam(Camera *cam)}}]{\setlength{\rightskip}{0pt plus 5cm}int init\+\_\+cam (
+\begin{DoxyParamCaption}
+\item[{{\bf Camera} $\ast$}]{cam}
+\end{DoxyParamCaption}
+)}\hypertarget{cgilib_8h_a5423edb32e5bf81ad59c86966a7494c6}{}\label{cgilib_8h_a5423edb32e5bf81ad59c86966a7494c6}
+
+
+Fonction d\textquotesingle{}initialisation des différents paramètres liées à la caméra. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cam} & Structure contenant les variables et images à initialiser. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{cgilib.\+h@{cgilib.\+h}!init\+\_\+cockpit@{init\+\_\+cockpit}}
+\index{init\+\_\+cockpit@{init\+\_\+cockpit}!cgilib.\+h@{cgilib.\+h}}
+\subsubsection[{\texorpdfstring{init\+\_\+cockpit(int i)}{init_cockpit(int i)}}]{\setlength{\rightskip}{0pt plus 5cm}Ipl\+Image$\ast$ init\+\_\+cockpit (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)}\hypertarget{cgilib_8h_a25a21584c96a36aba95f6d40245de59d}{}\label{cgilib_8h_a25a21584c96a36aba95f6d40245de59d}
+\index{cgilib.\+h@{cgilib.\+h}!init\+\_\+mask@{init\+\_\+mask}}
+\index{init\+\_\+mask@{init\+\_\+mask}!cgilib.\+h@{cgilib.\+h}}
+\subsubsection[{\texorpdfstring{init\+\_\+mask(struct \+\_\+\+C\+G\+I $\ast$after\+Effect)}{init_mask(struct _CGI *afterEffect)}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+\_\+mask (
+\begin{DoxyParamCaption}
+\item[{struct {\bf \+\_\+\+C\+GI} $\ast$}]{after\+Effect}
+\end{DoxyParamCaption}
+)}\hypertarget{cgilib_8h_a04d30fac7dc18ecc16cdd21f96aa16ed}{}\label{cgilib_8h_a04d30fac7dc18ecc16cdd21f96aa16ed}
+
+
+Fonction initialisant les valeurs des bornes haute et basse utilisées dans la création du mask. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em after\+Effect} & Structure contenant les variables de bornes haute et basse à modifier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{cgilib.\+h@{cgilib.\+h}!insert\+\_\+image@{insert\+\_\+image}}
+\index{insert\+\_\+image@{insert\+\_\+image}!cgilib.\+h@{cgilib.\+h}}
+\subsubsection[{\texorpdfstring{insert\+\_\+image(struct \+\_\+\+C\+G\+I $\ast$after\+Effect, Camera $\ast$cam, Patatoide $\ast$patate, int mode)}{insert_image(struct _CGI *afterEffect, Camera *cam, Patatoide *patate, int mode)}}]{\setlength{\rightskip}{0pt plus 5cm}void insert\+\_\+image (
+\begin{DoxyParamCaption}
+\item[{struct {\bf \+\_\+\+C\+GI} $\ast$}]{after\+Effect, }
+\item[{{\bf Camera} $\ast$}]{cam, }
+\item[{{\bf Patatoide} $\ast$}]{patate, }
+\item[{int}]{mode}
+\end{DoxyParamCaption}
+)}\hypertarget{cgilib_8h_a38a7d29cdb7a9f133a6845b22644e6ac}{}\label{cgilib_8h_a38a7d29cdb7a9f133a6845b22644e6ac}
+
+
+Fonction d\textquotesingle{}insertion d\textquotesingle{}image plus petite dans l\textquotesingle{}image affichée. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em after\+Effect} & Structure contenant les variables et images à insérer ainsi que les mask de copie. \\
+\hline
+{\em cam} & Structure contenant les variables et images à modifier. \\
+\hline
+{\em patate} & Structure contenant les informations sur le patatoide. \\
+\hline
+{\em mode} & permet de choisir quelle image copier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{cgilib.\+h@{cgilib.\+h}!is\+Touched@{is\+Touched}}
+\index{is\+Touched@{is\+Touched}!cgilib.\+h@{cgilib.\+h}}
+\subsubsection[{\texorpdfstring{is\+Touched(\+Patatoide patate)}{isTouched(Patatoide patate)}}]{\setlength{\rightskip}{0pt plus 5cm}int is\+Touched (
+\begin{DoxyParamCaption}
+\item[{{\bf Patatoide}}]{patate}
+\end{DoxyParamCaption}
+)}\hypertarget{cgilib_8h_a731bf42d8f37ed38b2865dd7b06bb031}{}\label{cgilib_8h_a731bf42d8f37ed38b2865dd7b06bb031}
+
+
+Fonction qui détermine si l\textquotesingle{}on a touché l\textquotesingle{}étoile ou non lors de notre tir. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em patate} & Structure contenant les informations sur le patatoide. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 si l\textquotesingle{}on a touché, 0 sinon. 
+\end{DoxyReturn}
+\index{cgilib.\+h@{cgilib.\+h}!laser@{laser}}
+\index{laser@{laser}!cgilib.\+h@{cgilib.\+h}}
+\subsubsection[{\texorpdfstring{laser(\+Ipl\+Image $\ast$img, int frame\+Number)}{laser(IplImage *img, int frameNumber)}}]{\setlength{\rightskip}{0pt plus 5cm}void laser (
+\begin{DoxyParamCaption}
+\item[{Ipl\+Image $\ast$}]{img, }
+\item[{int}]{frame\+Number}
+\end{DoxyParamCaption}
+)}\hypertarget{cgilib_8h_a59601d55e89384d9c991d0a306f28f04}{}\label{cgilib_8h_a59601d55e89384d9c991d0a306f28f04}
+
+
+Fonction d\textquotesingle{}animation des lasers sur l\textquotesingle{}image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em img} & Image sur laquelle on souhaite ajouter les lasers. \\
+\hline
+{\em frame\+Number} & Indique à quelle frame de l\textquotesingle{}image nous sommes pour déterminer à quelle position afficher les lasers. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{cgilib.\+h@{cgilib.\+h}!release\+\_\+boucle@{release\+\_\+boucle}}
+\index{release\+\_\+boucle@{release\+\_\+boucle}!cgilib.\+h@{cgilib.\+h}}
+\subsubsection[{\texorpdfstring{release\+\_\+boucle(struct \+\_\+\+C\+G\+I $\ast$after\+Effect, Camera $\ast$cam)}{release_boucle(struct _CGI *afterEffect, Camera *cam)}}]{\setlength{\rightskip}{0pt plus 5cm}void release\+\_\+boucle (
+\begin{DoxyParamCaption}
+\item[{struct {\bf \+\_\+\+C\+GI} $\ast$}]{after\+Effect, }
+\item[{{\bf Camera} $\ast$}]{cam}
+\end{DoxyParamCaption}
+)}\hypertarget{cgilib_8h_a9c332fda0ae3ab452aafa58f42432a76}{}\label{cgilib_8h_a9c332fda0ae3ab452aafa58f42432a76}
+
+
+Fonction de libération de la mémoire que l\textquotesingle{}on a allouée dans la boucle infinie du programme. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cam} & Structure contenant des pointeurs sur les mémoires à libérer \\
+\hline
+{\em after\+Effect} & idem que cam \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{cgilib.\+h@{cgilib.\+h}!release\+\_\+final@{release\+\_\+final}}
+\index{release\+\_\+final@{release\+\_\+final}!cgilib.\+h@{cgilib.\+h}}
+\subsubsection[{\texorpdfstring{release\+\_\+final(\+Camera $\ast$cam, struct \+\_\+\+C\+G\+I $\ast$after\+Effect)}{release_final(Camera *cam, struct _CGI *afterEffect)}}]{\setlength{\rightskip}{0pt plus 5cm}void release\+\_\+final (
+\begin{DoxyParamCaption}
+\item[{{\bf Camera} $\ast$}]{cam, }
+\item[{struct {\bf \+\_\+\+C\+GI} $\ast$}]{after\+Effect}
+\end{DoxyParamCaption}
+)}\hypertarget{cgilib_8h_ae3d713a42a97f1b819a5b94c5bea91ae}{}\label{cgilib_8h_ae3d713a42a97f1b819a5b94c5bea91ae}
+
+
+Fonction de libération de la mémoire que l\textquotesingle{}on a allouée au début du programme (et pas dans la boucle infinie) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cam} & Structure contenant des pointeurs sur les mémoires à libérer \\
+\hline
+{\em after\+Effect} & idem que cam \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{cgilib.\+h@{cgilib.\+h}!resize@{resize}}
+\index{resize@{resize}!cgilib.\+h@{cgilib.\+h}}
+\subsubsection[{\texorpdfstring{resize(\+Ipl\+Image $\ast$src, int percentage)}{resize(IplImage *src, int percentage)}}]{\setlength{\rightskip}{0pt plus 5cm}Ipl\+Image$\ast$ resize (
+\begin{DoxyParamCaption}
+\item[{Ipl\+Image $\ast$}]{src, }
+\item[{int}]{percentage}
+\end{DoxyParamCaption}
+)}\hypertarget{cgilib_8h_affce441e08e063a310c74cf737ccae8c}{}\label{cgilib_8h_affce441e08e063a310c74cf737ccae8c}
+
+
+Fonction qui redimensionne une image en pourcentage de sa taille initiale. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Image que à redimensionner. \\
+\hline
+{\em percentage} & Pourcentage qui donne la taille de l\textquotesingle{}image finale par rapport à l\textquotesingle{}image initiale \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ipl\+Image Image redimensionnée en fonction du pourcentage. 
+\end{DoxyReturn}
