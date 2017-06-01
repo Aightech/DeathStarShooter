@@ -25,8 +25,9 @@ using namespace std;
  */
 typedef struct _GUI{
        RenderWindow window;/**< The window */
-       Texture textureButton,textureStarShip,textureImages;/**<  texture of the differents gui objects*/
+       Texture textureButton,textureStarShip[3],textureImages;/**<  texture of the differents gui objects*/
        Sprite buttons[3];/**< The buttons of the GUI */
+       Sprite spritesStarship[3];/**< The buttons of the GUI */
        Font font;/**<  The font used in the gui */
        Text labels[3],labTitle;/**<  The */
        float selected;/**<  */

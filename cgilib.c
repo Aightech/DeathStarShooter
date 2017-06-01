@@ -56,13 +56,13 @@ IplImage *init_cockpit(int i)
   switch(i)
     {
     case 1:
-      Cockpit = cvLoadImage("cockpit1.jpg", CV_LOAD_IMAGE_COLOR);
+      Cockpit = cvLoadImage("./images/cockpit1.jpg", CV_LOAD_IMAGE_COLOR);
       break;
     case 2:
-      Cockpit = cvLoadImage("cockpit2.jpg", CV_LOAD_IMAGE_COLOR);
+      Cockpit = cvLoadImage("./images/cockpit2.jpg", CV_LOAD_IMAGE_COLOR);
       break;
     case 3:
-      Cockpit = cvLoadImage("cockpit3.jpg", CV_LOAD_IMAGE_COLOR);
+      Cockpit = cvLoadImage("./images/cockpit3.jpg", CV_LOAD_IMAGE_COLOR);
       break;
     }
   if(!Cockpit)
@@ -122,7 +122,7 @@ int init_cam(Camera *cam)
 {
   cam->lowerBound = cvScalar(109,141,84, 0);
   cam->higherBound = cvScalar(121, 216, 255, 0);
-  cam->cap = cvCreateCameraCapture(1);
+  cam->cap = cvCreateCameraCapture(0);
   if(!cam->cap)
     {
       return 0;
@@ -192,7 +192,7 @@ int isTouched(Patatoide patate)
 {   
   int centre_x = 320;   
   int centre_y = 212;   
-  int rayon_initial = 220;   
+  //int rayon_initial = 220;   
   int rayon_actuel = (int) (220.0 * (float)patate.percentage)/100.0;   
   if((centre_x - patate.centre.x)*(centre_x - patate.centre.x) + (centre_y - patate.centre.y)*(centre_y - patate.centre.y) <= rayon_actuel * rayon_actuel)     
     return 1;   

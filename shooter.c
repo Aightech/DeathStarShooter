@@ -34,13 +34,13 @@ int main()
     }
   else
     {
-      afterEffect.DeathStar = cvLoadImage("death-star-v.jpg", CV_LOAD_IMAGE_COLOR );/*On charge l'image de l'étoile de la mort*/
+      afterEffect.DeathStar = cvLoadImage("./images/death-star-v.jpg", CV_LOAD_IMAGE_COLOR );/*On charge l'image de l'étoile de la mort*/
       if(!afterEffect.DeathStar)
 	{
 	  printf("Erreur lors de l'ouverture de l'étoile de la mort !! Mais que fait Anakin ??\n");
 	}
       
-      afterEffect.Explosion = cvLoadImage("explosion.jpg", CV_LOAD_IMAGE_COLOR); /* On charge l'image de l'étoile de la mort */
+      afterEffect.Explosion = cvLoadImage("./images/explosion.jpg", CV_LOAD_IMAGE_COLOR); /* On charge l'image de l'étoile de la mort */
 
       /*Création du mask permettant d'enlever le fond du cockpit*/
 
@@ -58,8 +58,9 @@ int main()
 	    {
 	    case 0:
 	      {
-		gui.selected+=(js.joystickValue(1)>10000)?0.0015:0;
-		gui.selected+=(js.joystickValue(1)<-10000)?-0.0015:0;
+		gui.selected+=(js.joystickValue(1)>10000)?0.06:0;
+		gui.selected+=(js.joystickValue(1)<-10000)?-0.06:0;
+		
 		if(js.buttonPressed(0)>0)
 		  {
 		    switch((int)gui.selected%3)
@@ -82,14 +83,14 @@ int main()
 	      break;
 	    case 1:
 	      {
-		gui.selected+=(js.joystickValue(0)>10000)?0.0015:0;
-		gui.selected+=(js.joystickValue(0)<-10000)?-0.0015:0;
+		gui.selected+=(js.joystickValue(0)>10000)?0.06:0;
+		gui.selected+=(js.joystickValue(0)<-10000)?-0.06:0;
 		if(js.buttonPressed(0)>0)
 		  {
 		    gui.starship=(int)gui.selected%3;
-		    afterEffect.Cockpit = init_cockpit(gui.starship);/* Initialisations liées à l'image du cockpit */
-		    create_mask(&afterEffect, 0, 0, 0);
-		    gui.display=2;
+		    //afterEffect.Cockpit = init_cockpit(gui.starship);/* Initialisations liées à l'image du cockpit */
+		    //create_mask(&afterEffect, 0, 0, 0);
+		    //gui.display=2;
 		    //createMenu(&gui);
 		  }
 		updateGUI(&gui);
