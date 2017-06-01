@@ -1,17 +1,20 @@
 \hypertarget{mbdlib_8h}{}\section{mbdlib.\+h File Reference}
 \label{mbdlib_8h}\index{mbdlib.\+h@{mbdlib.\+h}}
+
+
+Ce fichier contient les prototypes des fonctions liées à la commande de la pantilt et de la archpro.  
+
+
 {\ttfamily \#include \char`\"{}struct.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$fcntl.\+h$>$}\\*
-Include dependency graph for mbdlib.\+h\+:
-\nopagebreak
+Include dependency graph for mbdlib.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{mbdlib_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -24,7 +27,21 @@ This graph shows which files directly or indirectly include this file\+:
 void \hyperlink{mbdlib_8h_a5e6840f4bd01fcfd381e0821f034c4d1}{init\+Pantilt} (\hyperlink{struct_8h_ac76c7245da78e1fb16fa784ba8d7d52e}{Pantilt} $\ast$pnt)
 \item 
 int \hyperlink{mbdlib_8h_adaf1617e53c25399ac540e749affb4d9}{move\+Pantilt} (\hyperlink{struct_8h_ac76c7245da78e1fb16fa784ba8d7d52e}{Pantilt} $\ast$pnt)
-\begin{DoxyCompactList}\small\item\em Move the pantilt to the new position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Initialize the pantilt to the new position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Ce fichier contient les prototypes des fonctions liées à la commande de la pantilt et de la archpro. 
+
+\begin{DoxyAuthor}{Author}
+Alexis Devillard 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+30 mai 2017 
+\end{DoxyDate}
 
 
 \subsection{Function Documentation}
@@ -44,10 +61,12 @@ int \hyperlink{mbdlib_8h_adaf1617e53c25399ac540e749affb4d9}{move\+Pantilt} (\hyp
 )}\hypertarget{mbdlib_8h_adaf1617e53c25399ac540e749affb4d9}{}\label{mbdlib_8h_adaf1617e53c25399ac540e749affb4d9}
 
 
-Move the pantilt to the new position. 
+Initialize the pantilt to the new position. 
+
+Move the pantilt to the new position.
 
 
 \begin{DoxyParams}{Parameters}
-{\em L} & The pantilt structure. \\
+{\em pnt} & The pantilt structure. \\
 \hline
 \end{DoxyParams}

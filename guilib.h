@@ -1,6 +1,16 @@
 #ifndef GUILIB_H
 #define GUILIB_H
 
+/**
+ * \file guilib.h
+ * \brief Ce fichier contient les prototypes des fonctions liées à l'interface grapphique.
+ * \author Alexis Devillard
+ * \version 1.0
+ * \date 30 mai 2017
+ */
+
+
+
 #include "struct.h"
 
 /*! \fn void initGUI(GUI *gui);

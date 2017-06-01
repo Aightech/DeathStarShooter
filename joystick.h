@@ -1,6 +1,11 @@
 #ifndef JOYSTICK_H
 #define JOYSTICK_H
 
+/**
+ * \file joystick.h
+ * \brief Ce fichier contient les prototypes des fonctions liées au joystick.
+ */
+
 #include <iostream>
 #include <fcntl.h>
 #include <pthread.h>
