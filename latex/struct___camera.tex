@@ -1,0 +1,67 @@
+\hypertarget{struct___camera}{}\section{\+\_\+\+Camera Struct Reference}
+\label{struct___camera}\index{\+\_\+\+Camera@{\+\_\+\+Camera}}
+
+
+{\ttfamily \#include $<$struct.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Ipl\+Image $\ast$ \hyperlink{struct___camera_acded182f5a3fc70318c5fca5b19bb9fe}{H\+SV}
+\item 
+Ipl\+Image $\ast$ \hyperlink{struct___camera_a07cebbf32e748bf08365cfe9e0726430}{threshed}
+\item 
+Ipl\+Image $\ast$ \hyperlink{struct___camera_a012f5d979064f440339281889f57a640}{frame}
+\item 
+Cv\+Scalar \hyperlink{struct___camera_a2fbe653d44adfd2e41d64b8ee08911f1}{lower\+Bound}
+\item 
+Cv\+Scalar \hyperlink{struct___camera_aba192c658e63df9203ec78a99e892d27}{higher\+Bound}
+\item 
+Cv\+Capture $\ast$ \hyperlink{struct___camera_a98541d23d3e26578d76145d7db507cfb}{cap}
+\item 
+Ipl\+Conv\+Kernel $\ast$ \hyperlink{struct___camera_a069a1733c9e85ccd40e15c392d0bb0bd}{elem}
+\item 
+int \hyperlink{struct___camera_a0bf89c266a3d53a2e1a016a61c931868}{cols}
+\item 
+int \hyperlink{struct___camera_a703a36cc8065f37869cc02c6b0e1c87f}{rows}
+\item 
+int \hyperlink{struct___camera_ae7658cf59eeb1a655b1ac5a536cc7dd4}{frame\+Number}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Data Documentation}
+\index{\+\_\+\+Camera@{\+\_\+\+Camera}!cap@{cap}}
+\index{cap@{cap}!\+\_\+\+Camera@{\+\_\+\+Camera}}
+\subsubsection[{\texorpdfstring{cap}{cap}}]{\setlength{\rightskip}{0pt plus 5cm}Cv\+Capture$\ast$ \+\_\+\+Camera\+::cap}\hypertarget{struct___camera_a98541d23d3e26578d76145d7db507cfb}{}\label{struct___camera_a98541d23d3e26578d76145d7db507cfb}
+La caméra d\textquotesingle{}où on récupère nos images. \index{\+\_\+\+Camera@{\+\_\+\+Camera}!cols@{cols}}
+\index{cols@{cols}!\+\_\+\+Camera@{\+\_\+\+Camera}}
+\subsubsection[{\texorpdfstring{cols}{cols}}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+\+Camera\+::cols}\hypertarget{struct___camera_a0bf89c266a3d53a2e1a016a61c931868}{}\label{struct___camera_a0bf89c266a3d53a2e1a016a61c931868}
+\index{\+\_\+\+Camera@{\+\_\+\+Camera}!elem@{elem}}
+\index{elem@{elem}!\+\_\+\+Camera@{\+\_\+\+Camera}}
+\subsubsection[{\texorpdfstring{elem}{elem}}]{\setlength{\rightskip}{0pt plus 5cm}Ipl\+Conv\+Kernel$\ast$ \+\_\+\+Camera\+::elem}\hypertarget{struct___camera_a069a1733c9e85ccd40e15c392d0bb0bd}{}\label{struct___camera_a069a1733c9e85ccd40e15c392d0bb0bd}
+Element pour l\textquotesingle{}érosion. \index{\+\_\+\+Camera@{\+\_\+\+Camera}!frame@{frame}}
+\index{frame@{frame}!\+\_\+\+Camera@{\+\_\+\+Camera}}
+\subsubsection[{\texorpdfstring{frame}{frame}}]{\setlength{\rightskip}{0pt plus 5cm}Ipl\+Image$\ast$ \+\_\+\+Camera\+::frame}\hypertarget{struct___camera_a012f5d979064f440339281889f57a640}{}\label{struct___camera_a012f5d979064f440339281889f57a640}
+Image reçue. \index{\+\_\+\+Camera@{\+\_\+\+Camera}!frame\+Number@{frame\+Number}}
+\index{frame\+Number@{frame\+Number}!\+\_\+\+Camera@{\+\_\+\+Camera}}
+\subsubsection[{\texorpdfstring{frame\+Number}{frameNumber}}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+\+Camera\+::frame\+Number}\hypertarget{struct___camera_ae7658cf59eeb1a655b1ac5a536cc7dd4}{}\label{struct___camera_ae7658cf59eeb1a655b1ac5a536cc7dd4}
+Donne la frame actuelle pour le déplacement des lasers. \index{\+\_\+\+Camera@{\+\_\+\+Camera}!higher\+Bound@{higher\+Bound}}
+\index{higher\+Bound@{higher\+Bound}!\+\_\+\+Camera@{\+\_\+\+Camera}}
+\subsubsection[{\texorpdfstring{higher\+Bound}{higherBound}}]{\setlength{\rightskip}{0pt plus 5cm}Cv\+Scalar \+\_\+\+Camera\+::higher\+Bound}\hypertarget{struct___camera_aba192c658e63df9203ec78a99e892d27}{}\label{struct___camera_aba192c658e63df9203ec78a99e892d27}
+Bornes de binarisation de l\textquotesingle{}image H\+SV. \index{\+\_\+\+Camera@{\+\_\+\+Camera}!H\+SV@{H\+SV}}
+\index{H\+SV@{H\+SV}!\+\_\+\+Camera@{\+\_\+\+Camera}}
+\subsubsection[{\texorpdfstring{H\+SV}{HSV}}]{\setlength{\rightskip}{0pt plus 5cm}Ipl\+Image$\ast$ \+\_\+\+Camera\+::\+H\+SV}\hypertarget{struct___camera_acded182f5a3fc70318c5fca5b19bb9fe}{}\label{struct___camera_acded182f5a3fc70318c5fca5b19bb9fe}
+Image reçue passée dans l\textquotesingle{}espace H\+SV. \index{\+\_\+\+Camera@{\+\_\+\+Camera}!lower\+Bound@{lower\+Bound}}
+\index{lower\+Bound@{lower\+Bound}!\+\_\+\+Camera@{\+\_\+\+Camera}}
+\subsubsection[{\texorpdfstring{lower\+Bound}{lowerBound}}]{\setlength{\rightskip}{0pt plus 5cm}Cv\+Scalar \+\_\+\+Camera\+::lower\+Bound}\hypertarget{struct___camera_a2fbe653d44adfd2e41d64b8ee08911f1}{}\label{struct___camera_a2fbe653d44adfd2e41d64b8ee08911f1}
+\index{\+\_\+\+Camera@{\+\_\+\+Camera}!rows@{rows}}
+\index{rows@{rows}!\+\_\+\+Camera@{\+\_\+\+Camera}}
+\subsubsection[{\texorpdfstring{rows}{rows}}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+\+Camera\+::rows}\hypertarget{struct___camera_a703a36cc8065f37869cc02c6b0e1c87f}{}\label{struct___camera_a703a36cc8065f37869cc02c6b0e1c87f}
+Nombres de colonnes et de lignes de l\textquotesingle{}image. \index{\+\_\+\+Camera@{\+\_\+\+Camera}!threshed@{threshed}}
+\index{threshed@{threshed}!\+\_\+\+Camera@{\+\_\+\+Camera}}
+\subsubsection[{\texorpdfstring{threshed}{threshed}}]{\setlength{\rightskip}{0pt plus 5cm}Ipl\+Image$\ast$ \+\_\+\+Camera\+::threshed}\hypertarget{struct___camera_a07cebbf32e748bf08365cfe9e0726430}{}\label{struct___camera_a07cebbf32e748bf08365cfe9e0726430}
+Image reçue binarisée depuis l\textquotesingle{}espace H\+SV. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_8h}{struct.\+h}\end{DoxyCompactItemize}

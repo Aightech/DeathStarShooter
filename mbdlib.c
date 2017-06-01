@@ -30,4 +30,5 @@ int movePantilt(Pantilt *pnt)
               fact=fact/10;
        }
        write(pnt->archPro,pnt->str,8);
+       return 1;
 }
