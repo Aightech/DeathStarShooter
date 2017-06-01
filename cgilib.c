@@ -55,13 +55,13 @@ IplImage *init_cockpit(int i)
   //printf("Cockpit choisi = %d\n\n\n\n", i);
   switch(i)
     {
-    case 1:
+    case 0:
       Cockpit = cvLoadImage("./images/cockpit1.jpg", CV_LOAD_IMAGE_COLOR);
       break;
-    case 2:
+    case 1:
       Cockpit = cvLoadImage("./images/cockpit2.jpg", CV_LOAD_IMAGE_COLOR);
       break;
-    case 3:
+    case 2:
       Cockpit = cvLoadImage("./images/cockpit3.jpg", CV_LOAD_IMAGE_COLOR);
       break;
     }

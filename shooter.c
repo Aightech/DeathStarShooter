@@ -78,20 +78,31 @@ int main()
 			break;
 		      }
 		  }
+		  usleep(100000);
 		updateGUI(&gui);
+		
 	      }
 	      break;
 	    case 1:
 	      {
+	      if(js.buttonPressed(1)>0)
+	      {
+	              gui.display=0;
+	              usleep(100000);
+	              createMenu(&gui);
+	       }
 		gui.selected+=(js.joystickValue(0)>10000)?0.06:0;
 		gui.selected+=(js.joystickValue(0)<-10000)?-0.06:0;
 		if(js.buttonPressed(0)>0)
 		  {
 		    gui.starship=(int)gui.selected%3;
+		    printf("starship: %d\n",gui.starship);
 		    afterEffect.Cockpit = init_cockpit(gui.starship);/* Initialisations liées à l'image du cockpit */
-		    //create_mask(&afterEffect, 0, 0, 0);
+		    printf("depth: %d\n",afterEffect.Cockpit->depth);
+		    create_mask(&afterEffect, 0, 0, 0);
 		    gui.display=2;
 		    createMenu(&gui);
+		    usleep(100000);
 		  }
 		updateGUI(&gui);
 	      }
@@ -100,9 +111,9 @@ int main()
 	      {
                            
 		gui.window.clear(Color(48,48,48));
-		Texture texture;
+		//Texture texture;
                             
-		texture.create(W, H); 
+		gui.textureImages.create(W, H); 
                             
 		unsigned char pixels[W*H*4];
 
@@ -113,44 +124,44 @@ int main()
 		  pixels[i+3] = 255;
 		}
 
-		texture.update(pixels);
-		Sprite sprite;
-		sprite.setTexture(texture);// Setting the texture for the sprites
-		sprite.setPosition(Vector2f(0,0));
-                            
-		gui.window.draw(sprite);
+		gui.textureImages.update(pixels);
+		//Sprite sprite;
+		gui.cam.setTexture(gui.textureImages);// Setting the texture for the sprites
+		//gui.cam.setPosition(Vector2f(55,100));
+                 updateGUI(&gui);           
+		gui.window.draw(gui.cam);
 		gui.window.display();//updateGUI(&gui);
 
 
-		cam.frame = cvQueryFrame(cam.cap);
+		/*cam.frame = cvQueryFrame(cam.cap);
 		if(!cam.frame)
 		  {
 		    printf("Erreur lors de l'acquisition de l'image\n");
 		    break;
 		  }
 
-		/*On créé nos images que l'on va utiliser*/
+		//On créé nos images que l'on va utiliser
 
 		cam.HSV = cvCreateImage(cvGetSize(cam.frame), 8, 3);
 		cam.threshed = cvCreateImage(cvGetSize(cam.frame), 8, 1);
 
-		/*On passe de l'espace BGR à l'espace HSV. On stocke l'image dans edges_HSV*/
+		//On passe de l'espace BGR à l'espace HSV. On stocke l'image dans edges_HSV
 
 		cvCvtColor(cam.frame, cam.HSV, CV_BGR2HSV);
 
-		/*On binarise l'image edges_HSV en la seuillant avec des bornes basses et hautes (pour garder uniquement le bleu)*/
+		//On binarise l'image edges_HSV en la seuillant avec des bornes basses et hautes (pour garder uniquement le bleu)
 
 		cvInRangeS(cam.HSV, cam.lowerBound, cam.higherBound, cam.threshed);
 
-		/*EROSION*/
+		//EROSION
 
 		cvErode(cam.threshed, cam.threshed, cam.elem, 1);
 
-		/*Calcul du centre de l'image et du nombre moyen de pixels détectés faire focntion qui retourne struc centre*/
+		//Calcul du centre de l'image et du nombre moyen de pixels détectés faire focntion qui retourne struc centre
 
 		calcul_patate(&patate, &cam, 0.1);
 
-		insert_image(&afterEffect, &cam, &patate, 1);/* On insère l'étoile de la mort */
+		insert_image(&afterEffect, &cam, &patate, 1);//On insère l'étoile de la mort
 
 		if(js.buttonPressed(0)>0)    
 		  flag = 1;
@@ -163,20 +174,20 @@ int main()
 		      {
 			cam.frameNumber = 0;	
 			flag = 0;
-			/*if(isTouched(patate))
+			if(isTouched(patate))
 			{
 						insert_image(&afterEffect, &cam, &patate, 2); On insère l'explosion 
 					usleep(500000);
-		      }*/}
+		      }
 		  }
 
-		insert_image(&afterEffect, &cam, &patate, 0);/* On insère le cockpit */
+		insert_image(&afterEffect, &cam, &patate, 0);// On insère le cockpit 
 
 		
 
 		release_boucle(&afterEffect, &cam);
 		if(cvWaitKey(27) != -1)
-		  break;
+		  break;*/
 	      }
 	      break;
 	    }
