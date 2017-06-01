@@ -13,20 +13,20 @@
 int main()
 {
   cJoystick js;
-       
   GUI gui;
-  initGUI(&gui);
-  createMenu(&gui);
-  //Pantilt pantilt = {80,80,40,140,40,100,0.3};
-  //initPantilt();
   int flag;
   Camera cam;
   struct _CGI afterEffect;
   Patatoide patate;
+  Texture texture;
+  unsigned char pixels[W*H*4];
   cam.frameNumber = 0;
-
+  initGUI(&gui);
+  createMenu(&gui);
   init_mask(&afterEffect);
   patate.moy = 1500;
+  //Pantilt pantilt = {80,80,40,140,40,100,0.3};
+  //initPantilt();
   if(!init_cam(&cam))
     {
       printf("Erreur lors de l'ouverture de la caméra\n");
@@ -100,27 +100,9 @@ int main()
 	      {
                            
 		gui.window.clear(Color(48,48,48));
-		Texture texture;
+
                             
 		texture.create(W, H); 
-                            
-		unsigned char pixels[W*H*4];
-
-		for(int i = 0; i < W*H*4; i += 4) {
-		  pixels[i] = 0; // obviously, assign the values you need here to form your color
-		  pixels[i+1] = 0;
-		  pixels[i+2] = 0;
-		  pixels[i+3] = 255;
-		}
-
-		texture.update(pixels);
-		Sprite sprite;
-		sprite.setTexture(texture);// Setting the texture for the sprites
-		sprite.setPosition(Vector2f(0,0));
-                            
-		gui.window.draw(sprite);
-		gui.window.display();//updateGUI(&gui);
-
 
 		cam.frame = cvQueryFrame(cam.cap);
 		if(!cam.frame)
@@ -164,15 +146,29 @@ int main()
 			cam.frameNumber = 0;	
 			flag = 0;
 			/*if(isTouched(patate))
-			{
-						insert_image(&afterEffect, &cam, &patate, 2); On insère l'explosion 
-					usleep(500000);
-		      }*/}
+			  {
+			  insert_image(&afterEffect, &cam, &patate, 2); On insère l'explosion 
+			  usleep(500000);
+			  }*/
+		      }
 		  }
 
 		insert_image(&afterEffect, &cam, &patate, 0);/* On insère le cockpit */
 
-		
+		for(int i = 0; i < W*H*4; i += 4) {
+		  pixels[i] = cam.frame->imageData[i]; // obviously, assign the values you need here to form your color
+		  pixels[i+1] = cam.frame->imageData[i + 1];
+		  pixels[i+2] = cam.frame->imageData[i + 2];
+		  pixels[i+3] = 255;
+		}
+
+		texture.update(pixels);
+		Sprite sprite;
+		sprite.setTexture(texture);// Setting the texture for the sprites
+		sprite.setPosition(Vector2f(0,0));
+                            
+		gui.window.draw(sprite);
+		gui.window.display();//updateGUI(&gui);
 
 		release_boucle(&afterEffect, &cam);
 		if(cvWaitKey(27) != -1)
