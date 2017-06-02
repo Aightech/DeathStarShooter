@@ -7,26 +7,29 @@
 #include "mbdlib.h"
 #include <iostream>
 #include "joystick.h"
+#include <string>
 
 
 
 int main()
 {
+       Pantilt pantilt = {80,80,40,140,40,100,0.3};
+       initPantilt(&pantilt);
   cJoystick js;
-       
   GUI gui;
-  initGUI(&gui);
-  createMenu(&gui);
-  //Pantilt pantilt = {80,80,40,140,40,100,0.3};
-  //initPantilt();
   int flag;
   Camera cam;
   struct _CGI afterEffect;
   Patatoide patate;
+  Texture texture;
   cam.frameNumber = 0;
-
+  initGUI(&gui);
+  createMenu(&gui);
   init_mask(&afterEffect);
   patate.moy = 1500;
+  int nb_points = 0;
+  //Pantilt pantilt = {80,80,40,140,40,100,0.3};
+  //initPantilt();
   if(!init_cam(&cam))
     {
       printf("Erreur lors de l'ouverture de la caméra\n");
@@ -58,8 +61,8 @@ int main()
 	    {
 	    case 0:
 	      {
-		gui.selected+=(js.joystickValue(1)>10000)?0.06:0;
-		gui.selected+=(js.joystickValue(1)<-10000)?-0.06:0;
+		gui.selected+=(js.joystickValue(1)>10000)?0.1:0;
+		gui.selected+=(js.joystickValue(1)<-10000)?-0.1:0;
 		
 		if(js.buttonPressed(0)>0)
 		  {
@@ -109,31 +112,24 @@ int main()
 	      break;
 	    case 2:
 	      {
-                           
+                     if(js.buttonPressed(7)>0)
+	             {
+	                     gui.display=0;
+	                     usleep(100000);
+	                     createMenu(&gui);
+	              } 
+	              printf("j0:%f\n",(js.joystickValue(0)/20000.));
+	              gui.score.setString(std::to_string(nb_points));
+	      pantilt.posM1+=-(js.joystickValue(0)/40000.);
+	      pantilt.posM2+=(js.joystickValue(1)/40000.);//(js.joystickValue(0)>1000)?js.joystickValue(0)/100.:0;
+	      movePantilt(&pantilt);
+	                    
 		gui.window.clear(Color(48,48,48));
-		//Texture texture;
+
                             
-		gui.textureImages.create(W, H); 
-                            
-		unsigned char pixels[W*H*4];
+		texture.create(W, H); 
 
-		for(int i = 0; i < W*H*4; i += 4) {
-		  pixels[i] = 0; // obviously, assign the values you need here to form your color
-		  pixels[i+1] = 0;
-		  pixels[i+2] = 0;
-		  pixels[i+3] = 255;
-		}
-
-		gui.textureImages.update(pixels);
-		//Sprite sprite;
-		gui.cam.setTexture(gui.textureImages);// Setting the texture for the sprites
-		//gui.cam.setPosition(Vector2f(55,100));
-                 updateGUI(&gui);           
-		gui.window.draw(gui.cam);
-		gui.window.display();//updateGUI(&gui);
-
-
-		/*cam.frame = cvQueryFrame(cam.cap);
+		cam.frame = cvQueryFrame(cam.cap);
 		if(!cam.frame)
 		  {
 		    printf("Erreur lors de l'acquisition de l'image\n");
@@ -176,18 +172,59 @@ int main()
 			flag = 0;
 			if(isTouched(patate))
 			{
-						insert_image(&afterEffect, &cam, &patate, 2); On insère l'explosion 
-					usleep(500000);
+			                     nb_points++;
+						insert_image(&afterEffect, &cam, &patate, 2);// On insère l'explosion 
+					//usleep(500000);
+
 		      }
 		  }
+		  }
+		  if(js.buttonPressed(5)>0)
+	             {
+	                     if(abs(patate.centre.x-cam.cols/2)>10)
+                            {
+                                   pantilt.posM1+=(patate.centre.x-cam.cols/2)*-0.01*pantilt.ease;
+                                   pantilt.posM1=(pantilt.posM1>pantilt.minM1)?pantilt.posM1:pantilt.minM1;
+                                   pantilt.posM1=(pantilt.posM1<pantilt.maxM1)?pantilt.posM1:pantilt.maxM1;
+                            }
+                            if(abs(patate.centre.y-cam.rows/2)>10)
+                            {
+                                   pantilt.posM2+=(patate.centre.y-cam.rows/2)*0.01*pantilt.ease;
+                                   pantilt.posM2=(pantilt.posM2>pantilt.minM2)?pantilt.posM2:pantilt.minM2;
+                                   pantilt.posM2=(pantilt.posM2<pantilt.maxM2)?pantilt.posM2:pantilt.maxM2;
+                            }
+                            movePantilt(&pantilt);
+                            //printf("hey\n");
+	              }  
+	      
 
 		insert_image(&afterEffect, &cam, &patate, 0);// On insère le cockpit 
+              
+                    
+		gui.textureImages.create(W, H); 
+                            
+		unsigned char pixels[W*H*4];
+              int j=0;
+		for(int i = 0; i < W*H*3; i += 3) {
+		  pixels[i+j] = cam.frame->imageData[i+2]; // obviously, assign the values you need here to form your color
+		  pixels[i+j+1] = cam.frame->imageData[i + 1];
+		  pixels[i+j+2] = cam.frame->imageData[i ];
+		  pixels[i+j+3] = 255;
+		  j++;
+		}
 
-		
+		gui.textureImages.update(pixels,W,H,0,0);
+		//Sprite sprite;
+		gui.cam.setTexture(gui.textureImages);// Setting the texture for the sprites
+		//gui.cam.setPosition(Vector2f(55,100));
+                 updateGUI(&gui);           
+		gui.window.draw(gui.cam);
+		gui.window.display();//updateGUI(&gui);
+
 
 		release_boucle(&afterEffect, &cam);
 		if(cvWaitKey(27) != -1)
-		  break;*/
+		  break;
 	      }
 	      break;
 	    }

@@ -34,7 +34,7 @@ void release_final(Camera *cam, CGI *afterEffect)
 void release_boucle(CGI *afterEffect, Camera *cam)
 {
   cvResetImageROI(cam->frame);
-  cvShowImage("Window",cam->frame);
+  //cvShowImage("Window",cam->frame);
   cvReleaseImage(&cam->HSV);
   cvReleaseImage(&cam->threshed);
   cvReleaseImage(&afterEffect->mask_DeathStar);

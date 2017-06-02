@@ -1,0 +1,42 @@
+<h1 style="padding-left: 60px;"><span style="text-decoration: underline;">Project :</span>&nbsp;&nbsp;&nbsp; <strong>DeathStar Shooter</strong></h1>
+<p>&nbsp;</p>
+<h2>Presentation globale</h2>
+<p>Notre projet vise &agrave; simuler l'interieur d'un X-wing capable de s'orienter dans l'espace grace &agrave; des moteur et de d&eacute;tecter des cible potentielles via une webcam fixer sur les moteurs.</p>
+<p>&nbsp;</p>
+<h2>Figure impos&eacute;e:</h2>
+<h3>Objectifs:</h3>
+<p lang="fr-FR" style="margin-bottom: 0in; line-height: 100%;">Dans un premier temps nous nous attacherons &agrave; rendre le syst&egrave;me capable de d&eacute;tecter une sph&egrave;re color&eacute;e et de chercher &agrave; la centr&eacute;e sur son image en orientant la webcam gr&acirc;ce aux moteurs.</p>
+<h3>Materiel</h3>
+<ul>
+<li>Une webcam</li>
+<li>Deux servo-moteurs</li>
+<li>Un support servos imprim&eacute;</li>
+<li>Un microcontroleur "ArchPro"</li>
+<li>Un ordinateur, munit de la librairie OpenCV</li>
+</ul>
+<h2>&nbsp;</h2>
+<h2>Figure libre:</h2>
+<h3>Objectifs:</h3>
+<p lang="fr-FR">Dans un second temps nous nous attacherons &agrave; rendre le syst&egrave;me capable de d&eacute;tecter plusieurs sph&egrave;res color&eacute;es et des remplacer sur son image par des images proportionnellement larges. En suite il conviendra de piloter l'orientation de la camera (donc des servos) gr&acirc;ce &agrave; un joystick de jeux vid&eacute;o.</p>
+<p lang="fr-FR">Dans un dernier temps nous cr&eacute;erons une interface graphique permettant &agrave; l'utilisateur une meilleur immersion dans le jeu. De plus un syst&egrave;me &eacute;lectronique pourra &ecirc;tre rajout&eacute; afin de suspendre des sph&egrave;res lumineuses autour du syst&egrave;me et des effets sonores afin de mettre en place une r&eacute;alit&eacute; augment&eacute;e plus avanc&eacute;e.</p>
+<h3>Materiel</h3>
+<p>&nbsp;</p>
+<ul>
+<li>Une webcam</li>
+<li>Deux servo-moteurs</li>
+<li>Un support servos imprim&eacute;</li>
+<li>Un microcontroleur "ArchPro"</li>
+<li>Un ordinbateur, munit de la librairie OpenCV</li>
+</ul>
+<p>Suppl&eacute;ments:</p>
+<ul>
+<li>Un joystick</li>
+<li>Des LEDs</li>
+<li>Des balles de Ping-Pong</li>
+<li>Un cerceau</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>R&eacute;partitions du travail:</h2>
+<h3>Diagramme de Gantt:</h3>
+<p>&nbsp;</p>
