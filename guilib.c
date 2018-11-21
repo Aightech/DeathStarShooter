@@ -25,6 +25,13 @@ void initGUI(GUI *gui)
        gui->labTitle.setPosition(Vector2f(winW/2-8*30, 65));
        gui->labTitle.setColor(Color(255,232,30));
        
+       gui->score.setFont(gui->font);
+       
+       gui->score.setCharacterSize(30);
+       gui->score.setStyle(sf::Text::Bold);
+       gui->score.setPosition(Vector2f(winW/2-8*30, 65));
+       gui->score.setColor(Color(255,0,0));
+
        for(int i=0;i<3;i++)
        {
               gui->buttons[i].setTexture(gui->textureButton);// Setting the texture for the sprites
@@ -137,6 +144,8 @@ void updateGUI(GUI *gui)
                      }*/
                      //gui->cam.setTexture(gui->textureImages);
                      gui->window.draw(gui->cam);
+
+                     gui->window.draw(gui->score);
                      
                      
               }

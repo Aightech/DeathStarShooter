@@ -17,7 +17,11 @@
 #define winH 650
 
 #define W 640
+<<<<<<< HEAD
 #define H 420
+=======
+#define H 480
+>>>>>>> origin
 using namespace sf;
 using namespace std;
 
@@ -32,7 +36,7 @@ typedef struct _GUI{
        Sprite spritesStarship[3];/**< The buttons of the GUI */
        Sprite cam;
        Font font;/**<  The font used in the gui */
-       Text labels[3],labTitle;/**<  The */
+       Text labels[3],labTitle,score;/**<  The */
        float selected;/**<  */
        int display;/**<  */
        int starship;/**<  */

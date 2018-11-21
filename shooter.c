@@ -7,11 +7,14 @@
 #include "mbdlib.h"
 #include <iostream>
 #include "joystick.h"
+#include <string>
 
 
 
 int main()
 {
+       Pantilt pantilt = {80,80,40,140,40,100,0.3};
+       initPantilt(&pantilt);
   cJoystick js;
   GUI gui;
   int flag;
@@ -25,6 +28,7 @@ int main()
   createMenu(&gui);
   init_mask(&afterEffect);
   patate.moy = 1500;
+  int nb_points = 0;
   //Pantilt pantilt = {80,80,40,140,40,100,0.3};
   //initPantilt();
   if(!init_cam(&cam))
@@ -44,8 +48,7 @@ int main()
 
       /*Création du mask permettant d'enlever le fond du cockpit*/
 
-
-      while(1)
+      while(gui.window.isOpen())
 	{
 	  Event event;
 	  while(gui.window.pollEvent(event))
@@ -173,34 +176,62 @@ int main()
 		      {
 			cam.frameNumber = 0;	
 			flag = 0;
-			/*if(isTouched(patate))
-			  {
-			  insert_image(&afterEffect, &cam, &patate, 2); On insère l'explosion 
-			  usleep(500000);
-			  }*/
+*/
+			if(isTouched(patate))
+			{
+			                     nb_points++;
+						insert_image(&afterEffect, &cam, &patate, 2);// On insère l'explosion 
+					//usleep(500000);
+
 		      }
 		  }
+		  }
+		  if(js.buttonPressed(5)>0)
+	             {
+	                     if(abs(patate.centre.x-cam.cols/2)>10)
+                            {
+                                   pantilt.posM1+=(patate.centre.x-cam.cols/2)*-0.01*pantilt.ease;
+                                   pantilt.posM1=(pantilt.posM1>pantilt.minM1)?pantilt.posM1:pantilt.minM1;
+                                   pantilt.posM1=(pantilt.posM1<pantilt.maxM1)?pantilt.posM1:pantilt.maxM1;
+                            }
+                            if(abs(patate.centre.y-cam.rows/2)>10)
+                            {
+                                   pantilt.posM2+=(patate.centre.y-cam.rows/2)*0.01*pantilt.ease;
+                                   pantilt.posM2=(pantilt.posM2>pantilt.minM2)?pantilt.posM2:pantilt.minM2;
+                                   pantilt.posM2=(pantilt.posM2<pantilt.maxM2)?pantilt.posM2:pantilt.maxM2;
+                            }
+                            movePantilt(&pantilt);
+                            //printf("hey\n");
+	              }  
+	      
 
 		insert_image(&afterEffect, &cam, &patate, 0);// On insère le cockpit 
-
-		for(int i = 0; i < W*H*4; i += 4) {
-		  pixels[i] = cam.frame->imageData[i]; // obviously, assign the values you need here to form your color
-		  pixels[i+1] = cam.frame->imageData[i + 1];
-		  pixels[i+2] = cam.frame->imageData[i + 2];
-		  pixels[i+3] = 255;
+              
+                    
+		gui.textureImages.create(W, H); 
+                            
+		unsigned char pixels[W*H*4];
+              int j=0;
+		for(int i = 0; i < W*H*3; i += 3) {
+		  pixels[i+j] = cam.frame->imageData[i+2]; // obviously, assign the values you need here to form your color
+		  pixels[i+j+1] = cam.frame->imageData[i + 1];
+		  pixels[i+j+2] = cam.frame->imageData[i ];
+		  pixels[i+j+3] = 255;
+		  j++;
 		}
 
-		texture.update(pixels);
-		Sprite sprite;
-		sprite.setTexture(texture);// Setting the texture for the sprites
-		sprite.setPosition(Vector2f(0,0));
-                            
-		gui.window.draw(sprite);
+		gui.textureImages.update(pixels,W,H,0,0);
+		//Sprite sprite;
+		gui.cam.setTexture(gui.textureImages);// Setting the texture for the sprites
+		//gui.cam.setPosition(Vector2f(55,100));
+                 updateGUI(&gui);           
+		gui.window.draw(gui.cam);
 		gui.window.display();//updateGUI(&gui);
+
 
 		release_boucle(&afterEffect, &cam);
 		if(cvWaitKey(27) != -1)
-		  break;*/
+		  break;
 	      }
 	      break;
 	    }
